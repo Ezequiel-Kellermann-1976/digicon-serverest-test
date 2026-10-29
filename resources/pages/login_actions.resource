@@ -8,6 +8,9 @@ Resource         ../configs/qa.resource
 Resource         ../page_objects/login_page.resource
 
 *** Keywords ***
+Ir para a tela de login
+    Go To    ${LOGIN_URL}
+
 Acessar a tela de login
     Wait Until Element Is Visible    ${CAMPO_EMAIL}    timeout=10s
 

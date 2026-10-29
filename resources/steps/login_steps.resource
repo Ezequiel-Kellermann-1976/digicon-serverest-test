@@ -9,6 +9,10 @@ Resource         ../pages/login_actions.resource
 Dado que estou na tela de login
     Acessar a tela de login
 
+Dado que vou para a tela de login
+    Ir para a tela de login
+    Acessar a tela de login
+
 Quando eu informo o email "${email}"
     Preencher email    ${email}
 
