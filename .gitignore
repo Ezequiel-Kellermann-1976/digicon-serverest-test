@@ -22,3 +22,6 @@ __pycache__/
 .kiro/
 .DS_Store
 Thumbs.db
+
+# Prints gerados pelos testes
+screenshots/
