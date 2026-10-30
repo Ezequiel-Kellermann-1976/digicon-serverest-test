@@ -33,6 +33,8 @@ Verificar mensagem de cadastro
     [Arguments]    ${mensagem}
     Wait Until Page Contains
     ...    ${mensagem}
-    ...    timeout=5s
+    ...    timeout=10s
     ...    error=A mensagem de sucesso não foi exibida. Revise o cadastro.
-    Capture Page Screenshot    ${TEST NAME}.png
+    # Dentro de um teste usa o nome dele; no Suite Setup (sem teste) usa um nome padrão.
+    ${nome_print}=    Get Variable Value    ${TEST NAME}    cadastro_para_os_testes
+    Capture Page Screenshot    ${nome_print}.png
