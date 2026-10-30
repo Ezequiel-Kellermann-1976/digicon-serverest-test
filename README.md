@@ -101,6 +101,11 @@ python -m robot -d results/ --include negativo tests/web/
 - No fluxo de lista de compras, nome, email e senha são gerados pela **FakerLibrary** a cada execução. Assim o teste pode rodar várias vezes sem erro de "email já utilizado".
 - Os testes usam **esperas explícitas** (`Wait Until ...`) e não usam `Sleep`.
 
-## Limitação conhecida
+## Repetibilidade
 
-O ServeRest é um ambiente público que apaga os dados periodicamente. O teste de login com sucesso em `login.robot` usa um usuário fixo (`resources/configs/qa.resource`) e pode falhar se esse usuário não existir mais no servidor. O fluxo de `lista_de_compras.robot` não tem esse problema, porque cria o próprio usuário.
+O ServeRest é um ambiente público que apaga os dados periodicamente e recusa emails repetidos. Por isso nenhum teste depende de um usuário que já exista:
+
+- `lista_de_compras.robot` e `login.robot` cadastram um usuário novo (Faker) antes dos testes.
+- `cadastro.robot` usa a palavra `FAKER` na coluna EMAIL da tabela, que vira um email novo a cada execução.
+
+Assim a suíte pode rodar várias vezes seguidas com o mesmo resultado.
