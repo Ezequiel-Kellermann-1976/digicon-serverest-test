@@ -34,9 +34,15 @@ Cadastrar vários produtos com sucesso
     [Tags]    api    controle    produtos
     ${headers}=    Criar administrador e obter token
 
-    ${ids}=    Cadastrar produtos em lote    ${headers}    ${5}
+    VAR    ${total}    ${5}
 
-    Length Should Be    ${ids}    5
+    ${ids}=    Cadastrar produtos em lote    ${headers}    ${total}
+    ${cadastrados}=    Get Length    ${ids}
+
+    Should Be Equal As Integers
+    ...    ${cadastrados}
+    ...    ${total}
+    ...    Foram cadastrados ${cadastrados} produtos, mas o esperado era ${total}
 
     FOR    ${id}    IN    @{ids}
         Aguardar produto disponível    ${id}

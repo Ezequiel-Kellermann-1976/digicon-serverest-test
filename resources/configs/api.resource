@@ -57,6 +57,11 @@ Cadastrar produtos em lote
     [Arguments]    ${headers}    ${total}
 
     VAR    @{ids}
+    VAR    ${cadastrados}    ${0}
+
+    # O Robot escreve o nome do teste sem quebrar a linha; esta linha vazia
+    # faz a primeira mensagem começar alinhada com as demais.
+    Log To Console    ${EMPTY}
 
     FOR    ${i}    IN RANGE    ${total}
         ${produto}=    Gerar produto
@@ -67,7 +72,17 @@ Cadastrar produtos em lote
         ...    headers=${headers}
         ...    expected_status=201
         Append To List    ${ids}    ${resp.json()}[_id]
+
+        ${cadastrados}=    Evaluate    ${cadastrados} + 1
+        Log To Console    Produto ${cadastrados}/${total} cadastrado com sucesso: ${produto}[nome]
+        Log    Produto ${cadastrados}/${total} cadastrado: ${produto}[nome] (id ${resp.json()}[_id])
     END
+
+    Should Be Equal As Integers
+    ...    ${cadastrados}
+    ...    ${total}
+    ...    Foram cadastrados ${cadastrados} produtos, mas o esperado era ${total}
+    Length Should Be    ${ids}    ${total}
 
     RETURN    ${ids}
 
