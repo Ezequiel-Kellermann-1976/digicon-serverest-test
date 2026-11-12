@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "required": [
+    "nome",
+    "preco",
+    "descricao",
+    "quantidade",
+    "_id"
+  ],
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "quantidade": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "imagem": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
