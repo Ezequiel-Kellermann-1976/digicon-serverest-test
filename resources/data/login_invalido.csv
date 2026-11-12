@@ -1,0 +1,4 @@
+*** Test Cases ***,${EMAIL},${PASSWORD},${MENSAGEM}
+senha incorreta,usuario@test.com,senha123,Email e/ou senha inválidos
+não informar o email,,123456,Email é obrigatório
+não informar a senha,usuario@test.com,,Password é obrigatório
