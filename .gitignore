@@ -25,3 +25,6 @@ Thumbs.db
 
 # Prints gerados pelos testes
 screenshots/
+
+# Banco de massa (SQLite) com usuários de teste
+data/massa.db
